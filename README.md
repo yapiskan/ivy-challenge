@@ -1,7 +1,7 @@
 # ivy-challenge
 
 # Installation
-I use cocoapods as package manager, you can install dependencies via:
+I use cocoapods as package manager, you can install dependencies by running the command below:
 
 ```pod install```
 
