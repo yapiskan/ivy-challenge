@@ -1,0 +1,29 @@
+ [
+      {
+          "author": "Ash Maurya",
+          "categories": "process",
+          "id": 1,
+          "lastCheckedOut": null,
+          "lastCheckedOutBy": null,
+          "publisher": "O'REILLY",
+          "title": "Running Lean",
+      },
+      {
+          "author": "Jim Collins",
+          "categories": "business",
+          "id": 2,
+          "lastCheckedOut": null,
+          "lastCheckedOutBy": null,
+          "publisher": "HarperBusiness; 1 edition",
+          "title": "Good to Great: Why Some Companies Make the Leap...And Others Don't",
+      },
+      {
+          "author": "Perry Chua, Dann Ilicic",
+          "categories": "design",
+          "id": 3,
+          "lastCheckedOut": null,
+          "lastCheckedOutBy": null,
+          "publisher": "Quayside, 2008",
+          "title": "Logo Savvy: Top Brand Design Firms Share Their Naming and Identity Strategies",
+      }
+  ]
