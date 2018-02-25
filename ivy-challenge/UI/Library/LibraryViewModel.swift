@@ -19,7 +19,7 @@ protocol LibraryViewModelProtocol {
 }
 
 final class LibraryViewModel: LibraryViewModelProtocol {
-    private var api: ApiClientProtocol
+    private let api: ApiClientProtocol
     private var isLoading = false
     private var onUpdate: ((Bool) -> ())?
     

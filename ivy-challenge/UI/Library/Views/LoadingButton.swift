@@ -11,7 +11,7 @@ import UIKit
 import SnapKit
 
 final class LoadingButton: UIButton {
-    private var spinner = UIActivityIndicatorView()
+    private let spinner = UIActivityIndicatorView()
     
     override init(frame: CGRect) {
         super.init(frame: .zero)

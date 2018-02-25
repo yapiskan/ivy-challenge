@@ -11,8 +11,8 @@ import UIKit
 import SnapKit
 
 final class FloatingTextField: UITextField {
-    private var titleLabel = UILabel()
-    private var lineView = UIView()
+    private let titleLabel = UILabel()
+    private let lineView = UIView()
     private var topConstraint: Constraint?
     
     override var placeholder: String? {

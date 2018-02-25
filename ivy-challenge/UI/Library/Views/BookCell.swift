@@ -12,8 +12,8 @@ import SnapKit
 
 final class BookCell: BaseTableViewCell {
     static let kIdentifier = "BookCell"
-    var titleLabel = UILabel()
-    var authorLabel = UILabel()
+    let titleLabel = UILabel()
+    let authorLabel = UILabel()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -31,7 +31,7 @@ final class BookCell: BaseTableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(10)

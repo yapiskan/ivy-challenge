@@ -12,16 +12,16 @@ import SnapKit
 import MBProgressHUD
 
 final class EditBookViewController: BaseViewController {
-    private var viewModel: LibraryViewModelProtocol
+    private let viewModel: LibraryViewModelProtocol
     private var book: Book?
     
-    private var stackView = UIStackView()
-    private var titleTextField = FloatingTextField()
-    private var authorTextField = FloatingTextField()
-    private var publisherTextField = FloatingTextField()
-    private var tagsTextField = FloatingTextField()
-    private var saveButton = LoadingButton()
-    private var statusLabel = UILabel()
+    private let stackView = UIStackView()
+    private let titleTextField = FloatingTextField()
+    private let authorTextField = FloatingTextField()
+    private let publisherTextField = FloatingTextField()
+    private let tagsTextField = FloatingTextField()
+    private let saveButton = LoadingButton()
+    private let statusLabel = UILabel()
     
     private var canClose: Bool {
         return titleTextField.isEmpty &&
@@ -57,18 +57,22 @@ final class EditBookViewController: BaseViewController {
         
         titleTextField.placeholder = "Title"
         titleTextField.delegate = self
+        titleTextField.returnKeyType = .next
         stackView.addArrangedSubview(titleTextField)
         
         authorTextField.placeholder = "Author"
         authorTextField.delegate = self
+        authorTextField.returnKeyType = .next
         stackView.addArrangedSubview(authorTextField)
         
         publisherTextField.placeholder = "Publisher"
         publisherTextField.delegate = self
+        publisherTextField.returnKeyType = .next
         stackView.addArrangedSubview(publisherTextField)
         
         tagsTextField.placeholder = "Tags"
         tagsTextField.delegate = self
+        tagsTextField.returnKeyType = .join
         stackView.addArrangedSubview(tagsTextField)
         
         statusLabel.font = UIFont.systemFont(ofSize: 12, weight: .bold)
@@ -174,6 +178,7 @@ final class EditBookViewController: BaseViewController {
     }
 }
 
+// MARK: UITextFieldDelegate
 extension EditBookViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {

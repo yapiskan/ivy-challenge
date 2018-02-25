@@ -8,12 +8,13 @@
 
 import Foundation
 import SnapKit
+import MBProgressHUD
 
 final class BooksViewController: BaseViewController {
-    private var viewModel: LibraryViewModelProtocol
-    
-    private var tableView = UITableView()
-    private var refreshControl = UIRefreshControl()
+    private let viewModel: LibraryViewModelProtocol
+
+    private let tableView = UITableView()
+    private let refreshControl = UIRefreshControl()
 
     init(viewModel: LibraryViewModelProtocol, router: AppRouter) {
         self.viewModel = viewModel
@@ -69,8 +70,10 @@ final class BooksViewController: BaseViewController {
     private func deleteAllTapped() {
         router.alert(with: "Delete All", message: "Are you sure to delete all books?", actions: [("Yes", .destructive), ("No", .default)]) { [unowned self] (success) in
             if success {
+                let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
                 self.viewModel.deleteAll() { [weak self] success in
                     guard let strongSelf = self else { return }
+                    hud.hide(animated: true)
                     if !success {
                         strongSelf.router.alert(message: "An error occurred while deleting books")
                     }
@@ -103,6 +106,8 @@ final class BooksViewController: BaseViewController {
     }
 }
 
+
+// MARK: UITableViewDelegate
 extension BooksViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let book = viewModel.books[indexPath.row]

@@ -10,6 +10,9 @@ import Foundation
 import Swinject
 
 final class AppRouter {
+    var injector: Injector!
+    private var navigationController: UINavigationController?
+    
 	var window: UIWindow {
 		let window = UIWindow(frame: UIScreen.main.bounds)
 		window.backgroundColor = UIColor.white
@@ -19,17 +22,10 @@ final class AppRouter {
 		return window
 	}
     
-    private var navigationController: UINavigationController?
-	
 	var entryViewController: UINavigationController {
 		navigationController = UINavigationController(rootViewController: injector.container.resolve(BooksViewController.self)!)
         
         return navigationController!
-	}
-	
-    var injector: Injector!
-	init() {
-		
 	}
 	
     func navigate(screen: Screens) {

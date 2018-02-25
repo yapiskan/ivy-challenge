@@ -8,20 +8,17 @@
 
 import Foundation
 import UIKit
-import RxSwift
-
-let people = ["Ross", "Chandler", "Joey", "Phoebe", "Rachel", "Monica"]
 
 final class BookDetailViewController: BaseViewController {
-    private var viewModel: LibraryViewModelProtocol
+    private let viewModel: LibraryViewModelProtocol
     private var book: Book
     
-    fileprivate var titleLabel = UILabel()
-    fileprivate var authorLabel = UILabel()
-    fileprivate var publisherLabel = UILabel()
-    fileprivate var tagsLabel = UILabel()
-    fileprivate var lastCheckoutByLabel = UILabel()
-    fileprivate var checkoutButton = LoadingButton()
+    fileprivate let titleLabel = UILabel()
+    fileprivate let authorLabel = UILabel()
+    fileprivate let publisherLabel = UILabel()
+    fileprivate let tagsLabel = UILabel()
+    fileprivate let lastCheckoutByLabel = UILabel()
+    fileprivate let checkoutButton = LoadingButton()
     
     init(viewModel: LibraryViewModelProtocol, router: AppRouter, book: Book) {
         self.viewModel = viewModel
@@ -59,7 +56,6 @@ final class BookDetailViewController: BaseViewController {
         view.addSubview(checkoutButton)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .done, target: self, action: #selector(shareButtonTapped))
-        
         view.setNeedsUpdateConstraints()
         
         title = book.title
@@ -111,7 +107,7 @@ final class BookDetailViewController: BaseViewController {
         super.updateViewConstraints()
     }
     
-    func bindData() {
+    private func bindData() {
         titleLabel.text = "\(book.title)"
         authorLabel.text = "\(book.author)"
         publisherLabel.text = "Publisher: \(book.publisher)"
@@ -130,7 +126,7 @@ final class BookDetailViewController: BaseViewController {
     }
     
     @objc
-    func checkoutTapped() {
+    private func checkoutTapped() {
         showCheckoutView { [weak self] (name) in
             guard let person = name else { return }
             guard let strongSelf = self else { return }
@@ -156,19 +152,19 @@ final class BookDetailViewController: BaseViewController {
         }
     }
     
-    func showCheckoutView(_ completion: @escaping (String?) -> ()) {
-        router.prompt(with: "Checkout the book", message: "Who is checking out?", placeholders: ["Name"], actions: [("OK", .default), ("Cancel", .destructive)]) { (success, info) in
-            if success, let name = info?.first??.trimmingCharacters(in: .whitespaces), name.count > 0 {
-            	completion(name)
-            }
-        }
-    }
-    
     @objc
-    func shareButtonTapped() {
+    private func shareButtonTapped() {
         let items = [book.title, "by \(book.author)", "from \(book.publisher)"]
         let avc = UIActivityViewController(activityItems: items, applicationActivities: nil)
         present(avc, animated: true, completion: nil)
+    }
+    
+    private func showCheckoutView(_ completion: @escaping (String?) -> ()) {
+        router.prompt(with: "Checkout the book", message: "Who is checking out?", placeholders: ["Name"], actions: [("OK", .default), ("Cancel", .destructive)]) { (success, info) in
+            if success, let name = info?.first??.trimmingCharacters(in: .whitespaces), name.count > 0 {
+                completion(name)
+            }
+        }
     }
 }
 
