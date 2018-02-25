@@ -9,12 +9,6 @@ target 'ivy-challenge' do
   pod 'AlamofireObjectMapper'
   pod 'Swinject'
   pod 'SnapKit'
-  pod 'SDWebImage'
-  pod 'SDWebImage/GIF'
-  pod 'ReachabilitySwift'
-  pod 'SwiftDate'
-  pod 'RxSwift'
-  pod 'RxCocoa'
   pod 'MBProgressHUD', '~> 1.1.0'
   
   target 'ivy-challengeTests' do
